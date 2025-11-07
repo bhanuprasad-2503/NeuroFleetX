@@ -1,0 +1,3 @@
+import React,{useEffect,useState} from 'react'
+import api from '../services/api'
+export default function Maintenance(){ const [alerts,setAlerts]=useState([]); useEffect(()=>{ api.get('/api/maintenance/alerts').then(r=>setAlerts(r.data)).catch(()=>{}) },[]); return (<div className='flex-1 p-8'><h1 className='text-2xl font-bold mb-4'>Predictive Maintenance</h1><div className='space-y-2'>{alerts.map(a=>(<div key={a.id} className='p-3 bg-white rounded shadow'><div className='font-semibold'>Vehicle {a.vehicleRegistration} — Risk {a.riskScore}%</div><div className='text-sm'>Recommendation: {a.recommendation}</div></div>))}</div></div>) }
